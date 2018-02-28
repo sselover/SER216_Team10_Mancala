@@ -12,7 +12,7 @@ Git repository for Spring 2018 SER 216 Team 10 semester project.
 1. File > New Java Project
 2. Uncheck "Use default location"
 3. Navigate to and select project directory
-4. Click next and ensure your src folders look sometihng like "src/main/java" and "src/test"
+4. Click next and ensure your src folders look something like "src/main/java" and "src/test"
 5. Click Finish
    
 ## To Execute
