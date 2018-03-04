@@ -21,5 +21,3 @@ Git repository for Spring 2018 SER 216 Team 10 semester project.
 2. Under Dependencies/Classpath tab (Dependencies if you use Java 9) click "Advanced..."
 3. Add new folder, and navigate to "/Mancala/src/main/resources/" and select the resources dir
 4. Click apply and run!
-   
-test push discord/github integration
