@@ -31,6 +31,8 @@ public class StartPanel extends JPanel {
     private final Controller controller;
     public String errorMsg;
     private JLabel errorLabel;
+    
+
 
     public StartPanel(Controller c) {
         final StartPanel panel = this;
@@ -83,6 +85,8 @@ public class StartPanel extends JPanel {
         startBGLabel.setIcon(title_Panel_Icon);
         add(startBGLabel);
 
+        
+        
 
         //This provides the action for the start button.
         startButton.addActionListener(new ActionListener() {
@@ -104,6 +108,7 @@ public class StartPanel extends JPanel {
                 controller.showInstructionScreen();
             }
         });
+        
 
     }
 
