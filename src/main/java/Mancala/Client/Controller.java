@@ -2,6 +2,8 @@ package Mancala.Client;
 
 import Mancala.Communication.*;
 import Mancala.GUI.*;
+import Mancala.Utilites.GameMusic;
+import Mancala.Utilites.MenuMusic;
 
 import javax.swing.*;
 import java.io.*;
@@ -19,6 +21,10 @@ public class Controller implements Runnable {
     private boolean disconnect = false;
     private String disconnectMsg;
     private Socket socket;
+    
+	private MenuMusic menu = new MenuMusic();
+	private GameMusic game = new GameMusic();
+
 
     public Controller() {
         try {
@@ -46,6 +52,8 @@ public class Controller implements Runnable {
             //Adds the StartPanel to the frame
             this.frame.getContentPane().add(panelStart);
             this.frame.setVisible(true);
+            
+            	menu.startMusic();
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -68,11 +76,19 @@ public class Controller implements Runnable {
 
     public void showGameBoard() {
         this.showPanel(this.gbp);
+        if(menu.isPlaying()) {
+        		menu.endMusic();
+        }
+        game.startMusic();
     }
 
     public void showStartScreen() {
         this.panelStart.removeError();
         this.showPanel(this.panelStart);
+        if(game.isPlaying()) {
+    			game.endMusic();
+        }
+        menu.startMusic();
     }
 
     public void showStartScreen(String errorMsg) {
@@ -87,6 +103,10 @@ public class Controller implements Runnable {
 
     public void showInstructionScreen() {
         this.showPanel(this.ip);
+        if(game.isPlaying()) {
+			game.endMusic();
+        }
+        menu.startMusic();
     }
 
     public boolean connectToServer() {
@@ -172,8 +192,9 @@ public class Controller implements Runnable {
 //
 //                System.out.print("  * You Won: ");
 //                System.out.println(gameState.isYouWin());
-
+                                                
                 keepPlaying = this.updateState(gameState);
+                
             } catch (EOFException e) {
                 reconnect = true;
                 keepPlaying = false;
@@ -183,7 +204,7 @@ public class Controller implements Runnable {
             } catch (ClassNotFoundException e) {
             }
         }
-
+                
         try {
             this.fromServer.close();
             this.toServer.close();
@@ -204,6 +225,8 @@ public class Controller implements Runnable {
             }
             this.resetBoard();
         }
+        
+        
     }
 
     public void resetBoard() {
