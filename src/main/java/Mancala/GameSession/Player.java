@@ -75,11 +75,16 @@ public class Player extends Socket {
 
         // check to see if the game is over and update both state objects
         int yourPitsSum = 0;
+        int opponentsPitsSum = 0;
         for (int pitCount : yourPits) {
             yourPitsSum += pitCount;
         }
+        
+        for (int pitCount : opponentsPits) {
+        		opponentsPitsSum += pitCount;
+        }
 
-        if (yourPitsSum == 0) {
+        if (yourPitsSum == 0 || opponentsPitsSum == 0) {
             // game over
             gameOver = true;
             for (int i = 0; i < opponentsPits.length; i++) {
